@@ -21,7 +21,6 @@ Bevor du das Skript ausführst, stelle sicher, dass die folgenden Programme und 
 
 Überprüfe, ob Python installiert ist:
 
-bash
 python --version
 
 2. Installiere FFmpeg
