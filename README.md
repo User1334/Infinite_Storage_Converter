@@ -21,7 +21,7 @@ Bevor du das Skript ausführst, stelle sicher, dass die folgenden Programme und 
 
 Überprüfe, ob Python installiert ist:
 
-python --version
+`python --version`
 
 2. Installiere FFmpeg
 
@@ -33,9 +33,9 @@ Windows
 
 3. Installiere Python - Bibliotheken:
 
-    pip install pillow (wenn pip nicht funktioniert benutze pip3)
+    `pip install pillow` (wenn pip nicht funktioniert benutze pip3)
 
 Verwendung:
 
-Führe das script aus python3 converter.py
+Führe das script aus `python3 converter.py`
 
