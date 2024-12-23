@@ -2,6 +2,8 @@
 
 This project converts files into MP4 videos by converting the binary data of the file into images and then saving it as a video. This can be used to save data on platforms like YouTube.
 
+Mainly inspired from [this](https://github.com/DvorakDwarf/Infinite-Storage-Glitch) and essentialy forked and modyfied from [this](https://github.com/DvorakDwarf/Infinite-Storage-Glitch) source.
+
 ---
 
 ## Requirements
@@ -21,17 +23,23 @@ Before running the script, make sure the following programs and libraries are in
 
    **MacOS**
 
-	Install Homebrew from <a href="https://brew.sh">here</a>.
+	Install Homebrew from [here](https://brew.sh).
 	
-	Install FFmpeg `brew install ffmpeg` (If that didn´t work, you might have to download the executable version of ffmpeg on <a href="https://www.ffmpeg.org">this</a> website and paste in the `mp4_enc_dec` folder)
-	Install pip `brew install pipx`
+	Install FFmpeg 
+`brew install ffmpeg`
+							(If that didn´t work, you might have to download the executable version of ffmpeg on [here](https://www.ffmpeg.org) and paste in the `mp4_enc_dec` folder)
+	Install pip
+`brew install pipx`
 	
 
-	Download the latest Python from <a href="https://www.python.org">here</a>.
+	Download the latest Python from https://www.python.org .
 
-	You can check that Python is installed with `python3 --version`
+	You can check that Python is installed with
+`python3 --version`
 
-	`pip3 install pillow`
+   Install Pillow
+   
+`pip3 install pillow`
 
 
 

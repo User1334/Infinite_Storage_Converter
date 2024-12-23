@@ -80,6 +80,8 @@ def images_to_video(video_filename):
 
 def capture_frame(filePath):
     """Extrahiert Frames aus einem Video und speichert sie als Bilder."""
+    if not os.path.exists("data"):
+        os.makedirs("data")
     output_frames = "data/binary_image_%d.png"
     command = ["ffmpeg", "-i", filePath, "-vf", "fps=1", output_frames]
     subprocess.call(command)
@@ -125,7 +127,6 @@ def convert_file_to_video():
     # Bereinige den Ordner 'images'
     cleanup_images_folder()
 
-
 def convert_video_to_file():
     """Hauptfunktion zur Rekonstruktion einer Datei aus einem Video."""
     file_path = input("Gib den Pfad zum MP4-Video ein: ").strip()
@@ -133,18 +134,41 @@ def convert_video_to_file():
         print(f"Die Datei '{file_path}' existiert nicht.")
         return
 
+    # Extrahiere Frames aus dem Video
     capture_frame(file_path)
-    onlyfiles = next(os.walk("data"))[2]
+
+    # Liste der extrahierten Dateien (sortiert)
+    onlyfiles = sorted(next(os.walk("data"))[2], key=lambda x: int(x.split('_')[-1].split('.')[0]))
+    if not onlyfiles:
+        print("Fehler: Keine Bilder im Ordner 'data' gefunden.")
+        return
+
+    total_files = len(onlyfiles)
     binary_string = ""
 
-    for i in range(len(onlyfiles)):
-        image_path = f"data/binary_image_{i + 1}.png"
+    print(f"Starte Verarbeitung von {total_files} Bildern...")
+
+    # Verarbeitung der Bilder mit Fortschrittsanzeige
+    for i, file_name in enumerate(onlyfiles):
+        image_path = f"data/{file_name}"
         binary_string += image_to_binary(image_path)
         remove_img(image_path)
 
+        # Fortschrittsanzeige im Terminal
+        progress = ((i + 1) / total_files) * 100
+        print(f"Fortschritt: {progress:.2f}% ({i + 1}/{total_files} Bilder verarbeitet)", end="\r")
+
+    print("\nVerarbeitung abgeschlossen. Erstelle Datei...")
+
+    # Überprüfen, ob der Binärstring korrekt zusammengesetzt ist
+    if len(binary_string) % 8 != 0:
+        print("Warnung: Binärstring ist nicht durch 8 teilbar. Fülle mit Nullen auf.")
+        binary_string = binary_string.ljust((len(binary_string) // 8 + 1) * 8, '0')
+
+    # Speichere die rekonstruierte Datei
     output_file = file_path.replace(".mp4", "")
-    binary_string_to_file(binary_string ,output_file)
-    print(f"Die rekonstruierte Datei wurde gespeichert unter: {output_file}"),
+    binary_string_to_file(binary_string, output_file)
+    print(f"Die rekonstruierte Datei wurde gespeichert unter: {output_file}")
 def binary_string_to_file(binary_string, file_path):
     """Konvertiert einen Binärstring in eine Datei."""
     with open(file_path, 'wb') as file:
