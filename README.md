@@ -21,13 +21,13 @@ Before running the script, make sure the following programs and libraries are in
 
    **MacOS**
 
-	Install Homebrew from <a href="https://brew.sh">here</a>.
+	Install Homebrew from https://brew.sh.
 	
-	Install FFmpeg `brew install ffmpeg` (If that didn´t work, you might have to download the executable version of ffmpeg on <a href="https://www.ffmpeg.org">this</a> website and paste in the `mp4_enc_dec` folder)
+	Install FFmpeg `brew install ffmpeg` (If that didn´t work, you might have to download the executable version of ffmpeg on https://www.ffmpeg.org and paste in the `mp4_enc_dec` folder)
 	Install pip `brew install pipx`
 	
 
-	Download the latest Python from <a href="https://www.python.org">here</a>.
+	Download the latest Python from https://www.python.org .
 
 	You can check that Python is installed with `python3 --version`
 
