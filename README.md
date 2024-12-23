@@ -2,7 +2,7 @@
 
 This project converts files into MP4 videos by converting the binary data of the file into images and then saving it as a video. This can be used to save data on platforms like YouTube.
 
-Mainly inspired from [this](https://github.com/DvorakDwarf/Infinite-Storage-Glitch) and essentialy forked and modyfied from [this](https://github.com/DvorakDwarf/Infinite-Storage-Glitch) source.
+Mainly inspired from [this](https://github.com/DvorakDwarf/Infinite-Storage-Glitch) and essentialy forked and modyfied from [this](https://github.com/Rohit10701/infinite-storage-glitch) source.
 
 ---
 
