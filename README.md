@@ -1,41 +1,45 @@
-# Infinite Storage Glitch: File to MP4 Converter
+# Infinite Storage Converter: File to MP4 Converter
 
-Dieses Projekt wandelt Dateien in MP4-Videos um, indem die Binärdaten der Datei in Bilder konvertiert und anschließend als Video gespeichert werden. Dies kann verwendet werden, um Daten auf Plattformen wie YouTube zu speichern.
+This project converts files into MP4 videos by converting the binary data of the file into images and then saving it as a video. This can be used to save data on platforms like YouTube.
 
 ---
 
-## Voraussetzungen
+## Requirements
 
-Bevor du das Skript ausführst, stelle sicher, dass die folgenden Programme und Bibliotheken installiert sind:
+Before running the script, make sure the following programs and libraries are installed:
 
 1. **Python 3.7+**
-2. **FFmpeg** (zur Konvertierung von Bildern in Videos)
-3. Die Python-Bibliotheken:
+2. **FFmpeg** (Video Conversion)
+3. The Python-Librarys:
    - `Pillow`
    - `glob`
-   - `subprocess` (Teil der Python-Standardbibliothek)
+   - `subprocess` (Part of Python-Standardlibrary)
 
 ---
 
 ## Installation
 
-Überprüfe, ob Python installiert ist:
+   **MacOS**
 
-`python --version`
+	Install Homebrew from <a href="https://brew.sh">here</a>.
+	
+	Install FFmpeg `brew install ffmpeg` (If that didn´t work, you might have to download the executable version of ffmpeg on <a href="https://www.ffmpeg.org">this</a> website and paste in the `mp4_enc_dec` folder)
+	Install pip `brew install pipx`
+	
 
-2. Installiere FFmpeg
+	Download the latest Python from <a href="https://www.python.org">here</a>.
 
-MacOS
-Ubuntu/Debian
-Windows
-	1.	Lade FFmpeg von der offiziellen FFmpeg-Website herunter.
-	2.	Kopiere FFmpeg in den Ordner "mp4_end_dec"
+	You can check that Python is installed with `python3 --version`
 
-3. Installiere Python - Bibliotheken:
+	`pip3 install pillow`
 
-    `pip install pillow` (wenn pip nicht funktioniert benutze pip3)
 
-Verwendung:
 
-Führe das script aus `python3 converter.py`
+
+
+
+
+
+
+
 

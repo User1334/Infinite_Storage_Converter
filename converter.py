@@ -11,30 +11,23 @@ def file_to_binary_string(file_path):
     return binary_string
 
 
-def binary_string_to_file(binary_string, file_path):
-    """Konvertiert einen Binärstring in eine Datei."""
-    with open(file_path, 'wb') as file:
-        bytes_list = [int(binary_string[i:i + 8], 2) for i in range(0, len(binary_string), 8)]
-        bytes_arr = bytearray(bytes_list)
-        file.write(bytes_arr)
-
-
 def binary_to_image(binary_str):
-    """Konvertiert einen Binärstring in eine Serie von Bildern."""
+    """Konvertiert einen Binärstring in eine Serie von Bildern mit Fortschrittsanzeige."""
     img_width = 480
     img_height = 360
     index = 0
     count = 0
+    total_bits = len(binary_str)
 
     # Sicherstellen, dass das Verzeichnis für Bilder existiert
     output_dir = "./images"
     os.makedirs(output_dir, exist_ok=True)
 
-    while index < len(binary_str):
+    while index < total_bits:
         image = Image.new("1", (img_width, img_height), color=1)
         for y in range(6, img_height, 6):
             for x in range(0, img_width, 6):
-                if index < len(binary_str):
+                if index < total_bits:
                     if binary_str[index] == "1":
                         for i in range(3):
                             for j in range(3):
@@ -47,6 +40,12 @@ def binary_to_image(binary_str):
 
         image.save(f"{output_dir}/binary_image_{count}.png")
         count += 1
+
+        # Fortschrittsanzeige aktualisieren
+        progress = (index / total_bits) * 100
+        print(f"Fortschritt: {progress:.2f}%", end="\r")
+
+    print("Bilderstellung abgeschlossen.")
 
 
 def image_to_binary(image_path):
@@ -94,6 +93,22 @@ def remove_img(path):
         print(f"Datei nicht gefunden: {path}")
 
 
+def cleanup_images_folder():
+    """Löscht alle Bilder im Ordner ./images."""
+    image_dir = "./images"
+    if os.path.exists(image_dir):
+        for file in os.listdir(image_dir):
+            file_path = os.path.join(image_dir, file)
+            try:
+                if os.path.isfile(file_path):
+                    os.remove(file_path)
+            except Exception as e:
+                print(f"Fehler beim Löschen von {file_path}: {e}")
+        print("Der Ordner './images' wurde bereinigt.")
+    else:
+        print("Der Ordner './images' existiert nicht.")
+
+
 def convert_file_to_video():
     """Hauptfunktion zur Konvertierung einer Datei in ein Video."""
     file_path = input("Gib den Pfad zur Datei ein, die in ein Video konvertiert werden soll: ").strip()
@@ -106,6 +121,9 @@ def convert_file_to_video():
     video_name = file_path + ".mp4"
     images_to_video(video_name)
     print(f"Das Video wurde gespeichert unter: {video_name}")
+
+    # Bereinige den Ordner 'images'
+    cleanup_images_folder()
 
 
 def convert_video_to_file():
@@ -125,8 +143,14 @@ def convert_video_to_file():
         remove_img(image_path)
 
     output_file = file_path.replace(".mp4", "")
-    binary_string_to_file(binary_string, output_file)
-    print(f"Die rekonstruierte Datei wurde gespeichert unter: {output_file}")
+    binary_string_to_file(binary_string ,output_file)
+    print(f"Die rekonstruierte Datei wurde gespeichert unter: {output_file}"),
+def binary_string_to_file(binary_string, file_path):
+    """Konvertiert einen Binärstring in eine Datei."""
+    with open(file_path, 'wb') as file:
+        bytes_list = [int(binary_string[i:i + 8], 2) for i in range(0, len(binary_string), 8)]
+        bytes_arr = bytearray(bytes_list)
+        file.write(bytes_arr)
 
 
 def main():
